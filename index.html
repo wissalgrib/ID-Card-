@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wissal Grib | Biotechnology Engineer & Startup Founder</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            bio: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+              950: '#052e16',
+            },
+            teal: {
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              900: '#134e4a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(34, 197, 94, 0.3);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(34, 197, 94, 0.6);
+    }
+
+    /* Print Styles for ATS & Paper Export */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 11pt !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      .card-box {
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+        page-break-inside: avoid;
+      }
+      a {
+        text-decoration: none !important;
+        color: #0f172a !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen selection:bg-bio-500 selection:text-slate-950 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
+
+  <!-- Navigation Header -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Logo / Name -->
+      <a href="#" class="flex items-center gap-2 group">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-bio-600 to-teal-400 flex items-center justify-center font-bold text-slate-950 text-lg shadow-lg shadow-bio-500/20 group-hover:scale-105 transition-transform">
+          WG
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-slate-100 tracking-tight leading-none group-hover:text-bio-400 transition-colors">Wissal Grib</span>
+          <span class="text-xs text-bio-400 font-mono mt-0.5">Biotech Engineer</span>
+        </div>
+      </a>
+
+      <!-- Quick Nav Links -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-bio-400 transition-colors">About</a>
+        <a href="#experience" class="hover:text-bio-400 transition-colors">Experience</a>
+        <a href="#simulator" class="hover:text-bio-400 transition-colors">Lab Simulator</a>
+        <a href="#skills" class="hover:text-bio-400 transition-colors">Skills</a>
+        <a href="#education" class="hover:text-bio-400 transition-colors">Education</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="flex items-center gap-3">
+        <!-- Search Button Modal Trigger -->
+        <button onclick="toggleSearchModal()" class="p-2 text-slate-400 hover:text-bio-400 hover:bg-slate-800/60 rounded-lg transition-colors" title="Search CV Content">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2 text-slate-400 hover:text-bio-400 hover:bg-slate-800/60 rounded-lg transition-colors" title="Toggle Light/Dark Theme">
+          <i class="fa-solid fa-sun dark:hidden"></i>
+          <i class="fa-solid fa-moon hidden dark:inline"></i>
+        </button>
+
+        <!-- Print PDF Button -->
+        <button onclick="window.print()" class="inline-flex items-center gap-2 bg-bio-600 hover:bg-bio-500 text-slate-950 font-semibold px-3.5 py-1.5 rounded-lg text-sm shadow-md shadow-bio-600/20 transition-all hover:scale-105">
+          <i class="fa-solid fa-print"></i>
+          <span class="hidden sm:inline">Print / PDF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="about" class="relative pt-8 pb-12 overflow-hidden border-b border-slate-800/60">
+    <!-- Glow Effects Background -->
+    <div class="absolute -top-24 -left-20 w-96 h-96 bg-bio-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/2 -right-20 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left: Avatar & Quick Info Card -->
+        <div class="lg:col-span-4 flex flex-col items-center text-center lg:items-start lg:text-left">
+          <div class="relative group mb-5">
+            <div class="absolute -inset-1 bg-gradient-to-r from-bio-500 to-teal-400 rounded-2xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
+            
+            <div class="relative w-44 h-44 rounded-2xl overflow-hidden bg-slate-800 border-2 border-slate-700 flex items-center justify-center">
+              <img 
+                src="https://raw.githubusercontent.com/wissalgrib-ux/ID-Card-/main/id%20photo.jfif" 
+                alt="Wissal Grib Photo" 
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onerror="this.style.display='none'; document.getElementById('heroAvatarFallback').style.display='flex';"
+              >
+              <div id="heroAvatarFallback" class="hidden w-full h-full bg-gradient-to-br from-bio-600 to-teal-700 text-slate-950 font-extrabold text-4xl items-center justify-center">
+                WG
+              </div>
+            </div>
+
+            <!-- Availability Status Badge -->
+            <div class="absolute -bottom-2 -right-2 bg-slate-900 border border-slate-700 px-3 py-1 rounded-full flex items-center gap-2 shadow-lg">
+              <span class="w-2.5 h-2.5 rounded-full bg-bio-400 animate-pulse"></span>
+              <span class="text-xs font-mono font-medium text-slate-300">Open to Biotech Roles</span>
+            </div>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-100 tracking-tight">Wissal Grib</h1>
+          <p class="text-bio-400 font-semibold mt-1 text-lg">Biotechnology Engineer | Microbial Specialist</p>
+          <p class="text-slate-400 text-sm mt-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-location-dot text-slate-500"></i> Tebessa, Algeria
+          </p>
+
+          <!-- Contact Quick Action Bar -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 mt-4">
+            <a href="https://wa.me/213794744894" target="_blank" rel="noopener" class="bg-slate-900 hover:bg-slate-800 text-bio-400 border border-slate-700 px-3 py-1.5 rounded-lg text-xs font-mono flex items-center gap-2 transition-all">
+              <i class="fa-brands fa-whatsapp text-bio-400"></i> WhatsApp
+            </a>
+            <a href="mailto:grib-wissal@ensbiotech.edu.dz" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 px-3 py-1.5 rounded-lg text-xs font-mono flex items-center gap-2 transition-all">
+              <i class="fa-regular fa-envelope text-bio-400"></i> Email
+            </a>
+            <a href="https://www.linkedin.com/in/wissal-grib-ab26451b8" target="_blank" rel="noopener" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 p-2 rounded-lg text-xs transition-all" title="LinkedIn">
+              <i class="fa-brands fa-linkedin-in text-bio-400"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Bio Summary & Metric Cards -->
+        <div class="lg:col-span-8 flex flex-col justify-between">
+          <div class="bg-slate-900/70 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm shadow-xl">
+            <h2 class="text-xs font-mono font-bold text-bio-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+              <i class="fa-solid fa-microscope"></i> Professional Executive Summary
+            </h2>
+            <p class="text-slate-300 text-base leading-relaxed">
+              Biotechnology Engineer with a Master's degree in <strong class="text-slate-100">Microbial Biotechnologies</strong> and hands-on experience across microbial product development, laboratory work, and clinical microbiology. Skilled in microbial culture, DNA/RNA extraction, gel electrophoresis, spectrophotometric analysis, sterilization, aseptic practices, laboratory documentation, and SOP development. Founder of an early-stage microalgae biotechnology project focused on omega-3 metabolites, with proven experience translating laboratory concepts into structured technical and product-development work.
+            </p>
+          </div>
+
+          <!-- Highlight Key Performance Indicators -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+            <div class="bg-slate-900/50 border border-slate-800/80 p-3.5 rounded-xl text-center">
+              <span class="block text-2xl font-extrabold text-bio-400 font-mono">~90%</span>
+              <span class="text-xs text-slate-400 font-medium">Omega-3 Purity</span>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-3.5 rounded-xl text-center">
+              <span class="block text-2xl font-extrabold text-teal-400 font-mono">+40%</span>
+              <span class="text-xs text-slate-400 font-medium">Process Yield Boost</span>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-3.5 rounded-xl text-center">
+              <span class="block text-2xl font-extrabold text-bio-400 font-mono">C1</span>
+              <span class="text-xs text-slate-400 font-medium">EF SET English</span>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-3.5 rounded-xl text-center">
+              <span class="block text-2xl font-extrabold text-teal-400 font-mono">GMP/GLP</span>
+              <span class="text-xs text-slate-400 font-medium">SOP Compliant</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Bioprocess & Yield Simulator Showcase -->
+  <section id="simulator" class="py-12 border-b border-slate-800/60 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <div>
+          <span class="text-xs font-mono font-bold text-bio-400 uppercase tracking-widest">Interactive Lab Feature</span>
+          <h2 class="text-2xl font-bold text-slate-100 flex items-center gap-2">
+            <i class="fa-solid fa-vial-circle-check text-bio-400"></i> Microalgae Bioprocess Optimization
+          </h2>
+          <p class="text-slate-400 text-sm">Interactive visualization of biotransformation yield and omega-3 metabolite purity parameters.</p>
+        </div>
+        <div class="inline-flex rounded-lg bg-slate-900 p-1 border border-slate-800 text-xs font-mono">
+          <button onclick="setSimMode('baseline')" id="btnSimBaseline" class="px-3 py-1 rounded-md text-slate-400 hover:text-slate-200 transition-colors">Standard Baseline</button>
+          <button onclick="setSimMode('optimized')" id="btnSimOptimized" class="px-3 py-1 rounded-md bg-bio-600 text-slate-950 font-bold shadow transition-colors">Wissal's Optimized (+40%)</button>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Controls & Sliders -->
+        <div class="lg:col-span-5 flex flex-col gap-4">
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+            <label class="text-xs font-mono text-slate-300 flex justify-between mb-1">
+              <span>Agitation & Aeration Rate</span>
+              <span id="valAgitation" class="text-bio-400 font-bold">220 RPM</span>
+            </label>
+            <input type="range" id="inputAgitation" min="100" max="350" value="220" class="w-full accent-bio-500 cursor-pointer" oninput="updateSim()">
+          </div>
+
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+            <label class="text-xs font-mono text-slate-300 flex justify-between mb-1">
+              <span>Nutrient Substrate Ratio</span>
+              <span id="valNutrient" class="text-teal-400 font-bold">1.8 mM</span>
+            </label>
+            <input type="range" id="inputNutrient" min="0.5" max="3.5" step="0.1" value="1.8" class="w-full accent-teal-400 cursor-pointer" oninput="updateSim()">
+          </div>
+
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+            <label class="text-xs font-mono text-slate-300 flex justify-between mb-1">
+              <span>Sterilisation & Temp Stability</span>
+              <span id="valTemp" class="text-bio-400 font-bold">25.0 °C</span>
+            </label>
+            <input type="range" id="inputTemp" min="18" max="35" step="0.5" value="25" class="w-full accent-bio-500 cursor-pointer" oninput="updateSim()">
+          </div>
+
+          <div class="bg-bio-950/40 border border-bio-500/20 p-3 rounded-xl text-xs text-bio-300 flex items-start gap-2">
+            <i class="fa-solid fa-circle-info text-bio-400 mt-0.5"></i>
+            <span>This interactive module reflects the biotransformation process conditions optimized during Wissal's early-stage microalgae startup project.</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Output Visualizer Graph -->
+        <div class="lg:col-span-7 flex flex-col justify-between">
+          <div class="h-48 bg-slate-950 rounded-xl p-4 border border-slate-800 relative flex items-end justify-between gap-4 overflow-hidden">
+            
+            <!-- Grid Lines -->
+            <div class="absolute inset-0 flex flex-col justify-between p-4 pointer-events-none opacity-20">
+              <div class="border-b border-slate-600"></div>
+              <div class="border-b border-slate-600"></div>
+              <div class="border-b border-slate-600"></div>
+            </div>
+
+            <!-- Bar 1: Biomass Yield -->
+            <div class="w-1/3 flex flex-col items-center h-full justify-end z-10">
+              <span id="simValBiomass" class="text-xs font-mono font-bold text-bio-400 mb-1">4.2 g/L</span>
+              <div id="simBarBiomass" class="w-full bg-gradient-to-t from-bio-800 to-bio-500 rounded-t-lg transition-all duration-300" style="height: 70%;"></div>
+              <span class="text-[10px] font-mono text-slate-400 mt-2">Biomass Yield</span>
+            </div>
+
+            <!-- Bar 2: Omega-3 Purity -->
+            <div class="w-1/3 flex flex-col items-center h-full justify-end z-10">
+              <span id="simValPurity" class="text-xs font-mono font-bold text-teal-400 mb-1">89.5%</span>
+              <div id="simBarPurity" class="w-full bg-gradient-to-t from-teal-800 to-teal-400 rounded-t-lg transition-all duration-300" style="height: 90%;"></div>
+              <span class="text-[10px] font-mono text-slate-400 mt-2">Metabolite Purity</span>
+            </div>
+
+            <!-- Bar 3: Efficiency Index -->
+            <div class="w-1/3 flex flex-col items-center h-full justify-end z-10">
+              <span id="simValEfficiency" class="text-xs font-mono font-bold text-emerald-300 mb-1">140%</span>
+              <div id="simBarEfficiency" class="w-full bg-gradient-to-t from-emerald-900 to-emerald-400 rounded-t-lg transition-all duration-300" style="height: 80%;"></div>
+              <span class="text-[10px] font-mono text-slate-400 mt-2">Process Efficiency</span>
+            </div>
+
+          </div>
+
+          <!-- Outcome Badge -->
+          <div class="mt-4 flex items-center justify-between p-3 bg-slate-950 rounded-xl border border-slate-800">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-bio-400 animate-ping"></span>
+              <span class="text-xs font-medium text-slate-200">Zero-Waste Biotransformation Workflow</span>
+            </div>
+            <span class="text-xs font-mono text-bio-400 font-bold" id="simStatusText">Optimal Output Achieved</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Professional Experience Section -->
+  <section id="experience" class="py-12 border-b border-slate-800/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div>
+          <span class="text-xs font-mono font-bold text-bio-400 uppercase tracking-widest">Career Profile</span>
+          <h2 class="text-2xl font-bold text-slate-100 flex items-center gap-2">
+            <i class="fa-solid fa-briefcase text-bio-400"></i> Professional Experience
+          </h2>
+        </div>
+        <div class="text-xs text-slate-400 font-mono no-print">
+          <i class="fa-solid fa-clock-rotate-left mr-1"></i> Reverse Chronological
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        
+        <!-- Experience 1: Startup Founder -->
+        <div class="card-box bg-slate-900/60 border border-slate-800 rounded-2xl p-6 relative hover:border-bio-500/40 transition-all shadow-lg">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+            <div>
+              <span class="text-xs font-mono text-bio-400 font-semibold uppercase">Microalgae Biotechnology Project</span>
+              <h3 class="text-xl font-bold text-slate-100">Biotechnologist / Startup Founder</h3>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="bg-bio-950 text-bio-400 border border-bio-500/30 text-xs font-mono px-3 py-1 rounded-full font-bold">
+                2024 – Present
+              </span>
+              <span class="text-xs text-slate-400"><i class="fa-solid fa-location-dot"></i> Algeria</span>
+            </div>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-300 list-disc list-inside">
+            <li>Developed an early-stage omega-3 microalgae biotechnology project, achieving approximately <strong class="text-bio-400">90% purity</strong> at laboratory scale.</li>
+            <li>Designed a <strong class="text-slate-100">zero-waste biotransformation approach</strong> for potential cosmetic and microbiological applications.</li>
+            <li>Applied reactor and equipment cleaning/disinfection procedures and sterilization workflows to support aseptic processing and reproducibility.</li>
+            <li>Optimized bioprocess conditions, improving production efficiency by approximately <strong class="text-teal-400">40% versus baseline conditions</strong>.</li>
+            <li>Prepared microbiological control records, technical documentation, and draft SOPs for future scale-up and GMP-aligned implementation.</li>
+          </ul>
+        </div>
+
+        <!-- Experience 2: Hospital Microbiology Intern -->
+        <div class="card-box bg-slate-900/60 border border-slate-800 rounded-2xl p-6 relative hover:border-bio-500/40 transition-all shadow-lg">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+            <div>
+              <span class="text-xs font-mono text-bio-400 font-semibold uppercase">Abdelhamid Ben Badis University Hospital Center</span>
+              <h3 class="text-xl font-bold text-slate-100">Microbiology Laboratory Intern</h3>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="bg-slate-800 text-slate-300 text-xs font-mono px-3 py-1 rounded-full">
+                Dec 2023 – Feb 2024
+              </span>
+              <span class="text-xs text-slate-400"><i class="fa-solid fa-location-dot"></i> Constantine, Algeria</span>
+            </div>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-300 list-disc list-inside">
+            <li>Supported microbial culture, Gram staining, antibiotic susceptibility testing, sample tracking, and microbiology reporting under supervision.</li>
+            <li>Contributed to antimicrobial-resistance (AMR) surveillance and clinical quality-control documentation.</li>
+          </ul>
+        </div>
+
+        <!-- Experience 3: Infectious Diseases Intern -->
+        <div class="card-box bg-slate-900/60 border border-slate-800 rounded-2xl p-6 relative hover:border-bio-500/40 transition-all shadow-lg">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+            <div>
+              <span class="text-xs font-mono text-bio-400 font-semibold uppercase">Abdelhamid Ben Badis University Hospital Center</span>
+              <h3 class="text-xl font-bold text-slate-100">Infectious Diseases Department Intern</h3>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="bg-slate-800 text-slate-300 text-xs font-mono px-3 py-1 rounded-full">
+                Dec 2021 – Feb 2022
+              </span>
+              <span class="text-xs text-slate-400"><i class="fa-solid fa-location-dot"></i> Constantine, Algeria</span>
+            </div>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-300 list-disc list-inside">
+            <li>Supported diagnostic activities, sample management, infection-control procedures, and review of scientific literature related to antimicrobial resistance.</li>
+          </ul>
+        </div>
+
+        <!-- Experience 4: Science Educator -->
+        <div class="card-box bg-slate-900/60 border border-slate-800 rounded-2xl p-6 relative hover:border-bio-500/40 transition-all shadow-lg">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+            <div>
+              <span class="text-xs font-mono text-bio-400 font-semibold uppercase">SAHLAH International Academy (Online)</span>
+              <h3 class="text-xl font-bold text-slate-100">Science Educator</h3>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="bg-slate-800 text-slate-300 text-xs font-mono px-3 py-1 rounded-full">
+                2023 – Present
+              </span>
+              <span class="text-xs text-slate-400"><i class="fa-solid fa-laptop-house"></i> Remote</span>
+            </div>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-300 list-disc list-inside">
+            <li>Teach biology, health, and biotechnology topics to secondary-level international students and develop structured digital learning materials.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Technical Skills Matrix Section -->
+  <section id="skills" class="py-12 border-b border-slate-800/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <span class="text-xs font-mono font-bold text-bio-400 uppercase tracking-widest">Technical Competencies</span>
+          <h2 class="text-2xl font-bold text-slate-100 flex items-center gap-2">
+            <i class="fa-solid fa-dna text-bio-400"></i> Skills & Laboratory Techniques
+          </h2>
+        </div>
+
+        <!-- Filter Pill Controls -->
+        <div class="flex flex-wrap gap-1.5 no-print">
+          <button onclick="filterSkills('all')" class="skill-filter-btn active-filter px-3 py-1 rounded-lg text-xs font-mono bg-bio-600 text-slate-950 font-bold transition-all">All</button>
+          <button onclick="filterSkills('micro')" class="skill-filter-btn px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 hover:bg-slate-800 text-slate-300 transition-all">Microbiology</button>
+          <button onclick="filterSkills('mol')" class="skill-filter-btn px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 hover:bg-slate-800 text-slate-300 transition-all">Molecular Bio</button>
+          <button onclick="filterSkills('process')" class="skill-filter-btn px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 hover:bg-slate-800 text-slate-300 transition-all">Bioprocessing</button>
+          <button onclick="filterSkills('soft')" class="skill-filter-btn px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 hover:bg-slate-800 text-slate-300 transition-all">Software</button>
+        </div>
+      </div>
+
+      <!-- Skills Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="skillsGrid">
+        
+        <!-- Skill Card 1 -->
+        <div class="skill-card card-box bg-slate-900/60 border border-slate-800 p-5 rounded-xl hover:border-bio-500/40 transition-all" data-category="micro">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-bio-950 text-bio-400 border border-bio-500/30 flex items-center justify-center">
+              <i class="fa-solid fa-bacterium"></i>
+            </div>
+            <h3 class="font-bold text-slate-100">Microbiology & Isolation</h3>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">Microbial culture & isolation, Gram staining, aseptic techniques, and antibiotic susceptibility testing.</p>
+        </div>
+
+        <!-- Skill Card 2 -->
+        <div class="skill-card card-box bg-slate-900/60 border border-slate-800 p-5 rounded-xl hover:border-bio-500/40 transition-all" data-category="mol">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-teal-950 text-teal-400 border border-teal-500/30 flex items-center justify-center">
+              <i class="fa-solid fa-vial"></i>
+            </div>
+            <h3 class="font-bold text-slate-100">Molecular Biology</h3>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">DNA/RNA extraction workflows, agarose gel electrophoresis, and quantitative biological sample preparation.</p>
+        </div>
+
+        <!-- Skill Card 3 -->
+        <div class="skill-card card-box bg-slate-900/60 border border-slate-800 p-5 rounded-xl hover:border-bio-500/40 transition-all" data-category="process">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-bio-950 text-bio-400 border border-bio-500/30 flex items-center justify-center">
+              <i class="fa-solid fa-gears"></i>
+            </div>
+            <h3 class="font-bold text-slate-100">Bioprocessing & Autoclaving</h3>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">Culture media prep, autoclave/sterilization protocols, reactor disinfection, biomass handling, and process optimization.</p>
+        </div>
+
+        <!-- Skill Card 4 -->
+        <div class="skill-card card-box bg-slate-900/60 border border-slate-800 p-5 rounded-xl hover:border-bio-500/40 transition-all" data-category="micro">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-teal-950 text-teal-400 border border-teal-500/30 flex items-center justify-center">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <h3 class="font-bold text-slate-100">Analytical & Spectrophotometry</h3>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">Spectrophotometric analysis, quantitative optical density measurement, and laboratory records traceability.</p>
+        </div>
+
+        <!-- Skill Card 5 -->
+        <div class="skill-card card-box bg-slate-900/60 border border-slate-800 p-5 rounded-xl hover:border-bio-500/40 transition-all" data-category="process">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-bio-950 text-bio-400 border border-bio-500/30 flex items-center justify-center">
+              <i class="fa-solid fa-file-shield"></i>
+            </div>
+            <h3 class="font-bold text-slate-100">Quality Control & GLP/GDP</h3>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">Drafting Standard Operating Procedures (SOPs), GLP/GDP-aligned documentation, laboratory safety, and QC support.</p>
+        </div>
+
+        <!-- Skill Card 6 -->
+        <div class="skill-card card-box bg-slate-900/60 border border-slate-800 p-5 rounded-xl hover:border-bio-500/40 transition-all" data-category="soft">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-slate-800 text-bio-400 border border-slate-700 flex items-center justify-center">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <h3 class="font-bold text-slate-100">Scientific Software & Programming</h3>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">MATLAB, Python, C++, Microsoft Excel, Word, and PowerPoint for data analysis and technical modeling.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Education & Certifications Section -->
+  <section id="education" class="py-12 border-b border-slate-800/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Left Column: Education -->
+        <div class="lg:col-span-7">
+          <span class="text-xs font-mono font-bold text-bio-400 uppercase tracking-widest">Academic Foundation</span>
+          <h2 class="text-2xl font-bold text-slate-100 flex items-center gap-2 mb-6">
+            <i class="fa-solid fa-graduation-cap text-bio-400"></i> Education
+          </h2>
+
+          <div class="space-y-4">
+            
+            <div class="card-box bg-slate-900/60 border border-slate-800 p-5 rounded-xl">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="font-bold text-slate-100 text-lg">Master's Degree in Microbial Biotechnologies</h3>
+                  <p class="text-bio-400 text-sm font-medium">National Higher School of Biotechnology (ENSB)</p>
+                  <p class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-location-dot"></i> Constantine, Algeria</p>
+                </div>
+                <span class="bg-bio-950 text-bio-400 border border-bio-500/30 text-xs font-mono px-3 py-1 rounded-full font-bold">2024</span>
+              </div>
+            </div>
+
+            <div class="card-box bg-slate-900/60 border border-slate-800 p-5 rounded-xl">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="font-bold text-slate-100 text-lg">State Engineer Degree in Biotechnology</h3>
+                  <p class="text-bio-400 text-sm font-medium">National Higher School of Biotechnology (ENSB)</p>
+                  <p class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-location-dot"></i> Constantine, Algeria</p>
+                </div>
+                <span class="bg-bio-950 text-bio-400 border border-bio-500/30 text-xs font-mono px-3 py-1 rounded-full font-bold">2025</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right Column: Certifications & Languages -->
+        <div class="lg:col-span-5 flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono font-bold text-teal-400 uppercase tracking-widest">Credentials</span>
+            <h2 class="text-2xl font-bold text-slate-100 flex items-center gap-2 mb-6">
+              <i class="fa-solid fa-award text-teal-400"></i> Languages & Certs
+            </h2>
+
+            <div class="space-y-4">
+              
+              <!-- EF SET Cert -->
+              <div class="card-box bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
+                <div>
+                  <div class="text-sm font-bold text-slate-100">EF SET English Certificate</div>
+                  <div class="text-xs text-teal-400 font-mono">C1 Level (Advanced CEFR)</div>
+                </div>
+                <span class="text-xs font-mono font-bold text-slate-300 bg-slate-800 px-2.5 py-1 rounded">2025</span>
+              </div>
+
+              <!-- Incubated Innovation Badge -->
+              <div class="card-box bg-slate-900/60 border border-slate-800 p-4 rounded-xl">
+                <div class="text-xs font-mono text-bio-400 font-bold uppercase mb-1">Incubation & Pitch</div>
+                <p class="text-xs text-slate-300">
+                  Microalgae startup incubated through National Higher School of Biotechnology, supported by technical pitch deck and documentation.
+                </p>
+              </div>
+
+              <!-- Languages Bar -->
+              <div class="card-box bg-slate-900/60 border border-slate-800 p-4 rounded-xl">
+                <div class="text-xs font-mono text-slate-400 mb-2">LANGUAGE PROFICIENCY</div>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-slate-800 text-slate-200 text-xs px-2.5 py-1 rounded font-medium">Arabic <span class="text-bio-400">(Native)</span></span>
+                  <span class="bg-slate-800 text-slate-200 text-xs px-2.5 py-1 rounded font-medium">English <span class="text-bio-400">(C1 Advanced)</span></span>
+                  <span class="bg-slate-800 text-slate-200 text-xs px-2.5 py-1 rounded font-medium">French <span class="text-bio-400">(Advanced)</span></span>
+                  <span class="bg-slate-800 text-slate-200 text-xs px-2.5 py-1 rounded font-medium">Spanish <span class="text-slate-400">(Beginner)</span></span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 bg-slate-950 text-slate-400 text-xs border-t border-slate-800/80 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <p class="font-medium text-slate-300">Wissal Grib &copy; 2026 — Interactive Biotechnology CV</p>
+        <p class="text-slate-500 font-mono mt-0.5">Microbial Biotechnologies | ENSB Constantine</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-bio-400 transition-colors">
+          <i class="fa-solid fa-arrow-up mr-1"></i> Back to Top
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Search Modal Overlay -->
+  <div id="searchModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-start justify-center pt-20 px-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg p-6 shadow-2xl relative">
+      <button onclick="toggleSearchModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-100">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <h3 class="text-lg font-bold text-slate-100 mb-3 flex items-center gap-2">
+        <i class="fa-solid fa-magnifying-glass text-bio-400"></i> Search Resume Keywords
+      </h3>
+
+      <input 
+        type="text" 
+        id="modalSearchInput" 
+        placeholder="Try 'SOP', 'autoclave', 'Python', 'Constantine'..." 
+        class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-slate-100 text-sm focus:outline-none focus:border-bio-500 mb-4"
+        onkeyup="performSearch()"
+      >
+
+      <div id="searchResults" class="max-h-60 overflow-y-auto space-y-2 text-xs">
+        <p class="text-slate-500 italic">Type a keyword above to filter sections...</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Theme Switcher Toggle */
+    function toggleTheme() {
+      const htmlEl = document.documentElement;
+      if (htmlEl.classList.contains('dark')) {
+        htmlEl.classList.remove('dark');
+      } else {
+        htmlEl.classList.add('dark');
+      }
+    }
+
+    /* Skills Category Filtering */
+    function filterSkills(category) {
+      const cards = document.querySelectorAll('.skill-card');
+      const buttons = document.querySelectorAll('.skill-filter-btn');
+
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-bio-600', 'text-slate-950', 'font-bold');
+        btn.classList.add('bg-slate-900', 'text-slate-300');
+      });
+
+      event.currentTarget.classList.remove('bg-slate-900', 'text-slate-300');
+      event.currentTarget.classList.add('bg-bio-600', 'text-slate-950', 'font-bold');
+
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    /* Bioprocess Yield Simulator Logic */
+    let simMode = 'optimized';
+
+    function setSimMode(mode) {
+      simMode = mode;
+      const btnBase = document.getElementById('btnSimBaseline');
+      const btnOpt = document.getElementById('btnSimOptimized');
+
+      if (mode === 'baseline') {
+        btnBase.className = "px-3 py-1 rounded-md bg-slate-700 text-slate-100 font-bold shadow transition-colors";
+        btnOpt.className = "px-3 py-1 rounded-md text-slate-400 hover:text-slate-200 transition-colors";
+        
+        document.getElementById('inputAgitation').value = 150;
+        document.getElementById('inputNutrient').value = 1.0;
+        document.getElementById('inputTemp').value = 22;
+      } else {
+        btnOpt.className = "px-3 py-1 rounded-md bg-bio-600 text-slate-950 font-bold shadow transition-colors";
+        btnBase.className = "px-3 py-1 rounded-md text-slate-400 hover:text-slate-200 transition-colors";
+
+        document.getElementById('inputAgitation').value = 220;
+        document.getElementById('inputNutrient').value = 1.8;
+        document.getElementById('inputTemp').value = 25;
+      }
+      updateSim();
+    }
+
+    function updateSim() {
+      const rpm = parseFloat(document.getElementById('inputAgitation').value);
+      const nut = parseFloat(document.getElementById('inputNutrient').value);
+      const temp = parseFloat(document.getElementById('inputTemp').value);
+
+      document.getElementById('valAgitation').innerText = `${rpm} RPM`;
+      document.getElementById('valNutrient').innerText = `${nut} mM`;
+      document.getElementById('valTemp').innerText = `${temp.toFixed(1)} °C`;
+
+      // Calculate dynamic simulated metrics based on parameters
+      let biomass = (rpm * 0.012) + (nut * 0.9) + (temp > 28 ? -0.5 : 0.3);
+      let purity = Math.min(95, (rpm * 0.25) + (nut * 15) + (temp === 25 ? 10 : 2));
+      let efficiency = (purity / 90) * 140;
+
+      biomass = Math.max(1.0, Math.min(6.5, biomass));
+      purity = Math.max(40, Math.min(95, purity));
+      efficiency = Math.max(60, Math.min(150, efficiency));
+
+      document.getElementById('simValBiomass').innerText = `${biomass.toFixed(1)} g/L`;
+      document.getElementById('simValPurity').innerText = `${purity.toFixed(1)}%`;
+      document.getElementById('simValEfficiency').innerText = `${Math.round(efficiency)}%`;
+
+      document.getElementById('simBarBiomass').style.height = `${(biomass / 6.5) * 100}%`;
+      document.getElementById('simBarPurity').style.height = `${purity}%`;
+      document.getElementById('simBarEfficiency').style.height = `${(efficiency / 150) * 100}%`;
+
+      const statusText = document.getElementById('simStatusText');
+      if (purity >= 88) {
+        statusText.innerText = "Optimal High-Purity Yield Achieved";
+        statusText.className = "text-xs font-mono text-bio-400 font-bold";
+      } else {
+        statusText.innerText = "Sub-optimal Process Conditions";
+        statusText.className = "text-xs font-mono text-amber-400 font-bold";
+      }
+    }
+
+    /* Modal Search Script */
+    function toggleSearchModal() {
+      const modal = document.getElementById('searchModal');
+      modal.classList.toggle('hidden');
+      if (!modal.classList.contains('hidden')) {
+        document.getElementById('modalSearchInput').focus();
+      }
+    }
+
+    function performSearch() {
+      const query = document.getElementById('modalSearchInput').value.toLowerCase().trim();
+      const resultsContainer = document.getElementById('searchResults');
+      
+      if (!query) {
+        resultsContainer.innerHTML = `<p class="text-slate-500 italic">Type a keyword above to filter sections...</p>`;
+        return;
+      }
+
+      const searchableItems = [
+        { text: "Microalgae Metabolites Startup - 90% purity omega-3 project", section: "Experience" },
+        { text: "Microbiology Laboratory Intern - Hospital Center Constantine", section: "Experience" },
+        { text: "Infectious Diseases Internship - Antimicrobial resistance (AMR)", section: "Experience" },
+        { text: "Science Educator - SAHLAH International Academy", section: "Experience font-bold" },
+        { text: "Master's Degree in Microbial Biotechnologies - ENSB Constantine 2024", section: "Education" },
+        { text: "State Engineer Degree in Biotechnology - ENSB Constantine 2025", section: "Education" },
+        { text: "Gram staining, microbial culture, DNA/RNA extraction, gel electrophoresis", section: "Skills" },
+        { text: "Spectrophotometer, Autoclave, SOP drafting, GLP/GDP compliance", section: "Skills" },
+        { text: "EF SET English Certificate C1 Level (Advanced CEFR)", section: "Certifications" },
+        { text: "MATLAB, Python, C++, Excel, PowerPoint", section: "Software" }
+      ];
+
+      const matches = searchableItems.filter(item => item.text.toLowerCase().includes(query));
+
+      if (matches.length === 0) {
+        resultsContainer.innerHTML = `<p class="text-slate-400">No direct matches found for "<span class="text-bio-400">${query}</span>".</p>`;
+      } else {
+        resultsContainer.innerHTML = matches.map(m => `
+          <div class="p-2.5 bg-slate-950 rounded-lg border border-slate-800">
+            <span class="text-[10px] font-mono text-bio-400 font-bold uppercase block">${m.section}</span>
+            <span class="text-slate-200">${m.text}</span>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Initialize Simulator on Page Load
+    window.onload = function() {
+      updateSim();
+    };
+  </script>
+</body>
+</html>
